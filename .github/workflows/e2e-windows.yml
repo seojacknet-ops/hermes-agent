@@ -22,7 +22,7 @@ jobs:
       # this package-lock + bootstrap-installer source combo was already built,
       # so we can skip the entire Node/Rust/toolchain dance and just upload it.
       - name: Restore installer build cache
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a986c91a # v4.2.0
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         id: installer-cache
         with:
           path: Hermes-Setup.exe
