@@ -66,8 +66,6 @@ clickX := (x + (w / 2))
 clickY := (y + 418)
 
 ClickWithMarker(clickX, clickY)
-Sleep(100)
-ClickWithMarker(clickX, clickY)
 
 Sleep(2000)
 ToolTip("Done")

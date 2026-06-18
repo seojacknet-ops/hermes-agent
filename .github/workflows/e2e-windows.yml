@@ -376,14 +376,22 @@ jobs:
           Add-Content $env:GITHUB_STEP_SUMMARY ""
           Add-Content $env:GITHUB_STEP_SUMMARY "![recording.gif]($env:GIF_URL)"
 
-      - name: Upload AHK logs and script
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        if: always()
-        with:
-          name: ahk-discovery
-          path: |
-            ahk.log
-            ahk-stdout.log
-            ahk-stderr.log
-            capture-button.ahk
-          if-no-files-found: ignore
+      - name: Installer log
+        shell: pwsh
+        run: |
+          Get-Content "$env:HERMES_HOME\logs\bootstrap-installer.log"
+
+      - name: Autohotkey log
+        shell: pwsh
+        run: |
+          Get-Content ahk.log
+
+      - name: Autohotkey stdout
+        shell: pwsh
+        run: |
+          Get-Content ahk-stdout.log
+
+      - name: Autohotkey stderr
+        shell: pwsh
+        run: |
+          Get-Content ahk-stderr.log
