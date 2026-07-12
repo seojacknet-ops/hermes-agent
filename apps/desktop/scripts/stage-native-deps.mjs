@@ -117,12 +117,12 @@ export function stageNodePty({ platform = process.platform, arch = process.arch 
         cpSync(join(prebuildDir, entry.name), join(destPrebuild, entry.name))
       }
     }
-  } else {
+  } else if (!existsSync(join(destRoot, 'build/Release/pty.node'))) {
     console.warn(
-      `[stage-native-deps] no prebuild found at prebuilds/${platform}-${arch} for node-pty. ` +
-        `If build/Release/* above is also empty, this target will fail at runtime. ` +
-        `Run "npx electron-rebuild -w node-pty" for this target, or check that ` +
-        `node-pty's published prebuilds cover ${platform}-${arch}.`
+      `[stage-native-deps] no prebuild found at prebuilds/${platform}-${arch} for node-pty ` +
+        `and build/Release is empty — this target will fail at runtime. ` +
+        `Run "node scripts/ensure-node-pty-electron.mjs" (or "npx electron-rebuild -w node-pty") ` +
+        `for this target, or check that node-pty's published prebuilds cover ${platform}-${arch}.`
     )
   }
 
